@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>登录 / 注册</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="center-page">
+    <div>
+      <div class="brand" style="justify-content:center; margin-bottom: 22px;">
+        <div class="brand-mark">IP</div>
+        <div>
+          <div class="eyebrow">账号中心</div>
+          <h1>欢迎回来</h1>
+        </div>
+      </div>
+
+      <div class="card auth-card">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="login">登录</button>
+          <button class="tab-btn" data-tab="register">注册</button>
+        </div>
+
+        <div id="msg" class="msg"></div>
+
+        <!-- 登录表单 -->
+        <form id="loginForm">
+          <div class="field">
+            <label>用户名</label>
+            <input type="text" id="loginUsername" autocomplete="username" required />
+          </div>
+          <div class="field">
+            <label>密码</label>
+            <input type="password" id="loginPassword" autocomplete="current-password" required />
+          </div>
+          <button type="submit" class="btn-primary">登录</button>
+        </form>
+
+        <!-- 注册表单 -->
+        <form id="registerForm" style="display:none;">
+          <div class="field">
+            <label>用户名（3-32 位）</label>
+            <input type="text" id="regUsername" autocomplete="username" required />
+          </div>
+          <div class="field">
+            <label>邮箱（可选）</label>
+            <input type="email" id="regEmail" autocomplete="email" />
+          </div>
+          <div class="field">
+            <label>密码（至少 6 位）</label>
+            <input type="password" id="regPassword" autocomplete="new-password" required />
+          </div>
+          <button type="submit" class="btn-primary">注册</button>
+        </form>
+      </div>
+
+      <div class="footer-hint">注册与登录时系统会记录您的 IP 地址，用于账号安全与异常访问识别</div>
+    </div>
+  </div>
+
+  <!-- 登录后展示的个人信息卡片，默认隐藏 -->
+  <div class="overlay" id="profileOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>个人信息</h2>
+        <button class="modal-close" onclick="location.reload()">×</button>
+      </div>
+      <div id="profileBody" class="mono" style="font-size:13.5px; line-height:2;"></div>
+      <button style="margin-top:16px; width:100%;" onclick="logout()">退出登录</button>
+    </div>
+  </div>
+
+<script src="/js/main.js"></script>
+</body>
+</html>

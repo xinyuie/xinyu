@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>后台管理 · 用户与 IP 监控</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<!-- 管理员登录界面 -->
+<div class="center-page" id="adminLoginView">
+  <div>
+    <div class="brand" style="justify-content:center; margin-bottom: 22px;">
+      <div class="brand-mark">IP</div>
+      <div>
+        <div class="eyebrow">管理控制台</div>
+        <h1>管理员登录</h1>
+      </div>
+    </div>
+    <div class="card auth-card">
+      <div id="loginMsg" class="msg"></div>
+      <form id="adminLoginForm">
+        <div class="field">
+          <label>管理员账号</label>
+          <input type="text" id="adminUsername" autocomplete="username" required />
+        </div>
+        <div class="field">
+          <label>密码</label>
+          <input type="password" id="adminPassword" autocomplete="current-password" required />
+        </div>
+        <button type="submit" class="btn-primary">进入控制台</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- 后台主界面 -->
+<div class="page" id="dashboardView" style="display:none;">
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-mark">IP</div>
+      <div>
+        <div class="eyebrow">管理控制台</div>
+        <h1>用户与 IP 监控台</h1>
+      </div>
+    </div>
+    <button class="btn-sm" onclick="adminLogout()">退出登录</button>
+  </div>
+
+  <div class="stats-grid mono">
+    <div class="stat-card">
+      <div class="label">用户总数</div>
+      <div class="value" id="statTotal">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">今日新增</div>
+      <div class="value accent" id="statToday">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">独立 IP 数</div>
+      <div class="value" id="statIps">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">已封禁</div>
+      <div class="value danger" id="statBanned">—</div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <input type="text" id="searchInput" placeholder="按用户名 / IP 搜索..." />
+    <button class="btn-sm" onclick="loadUsers()">刷新</button>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>用户名</th>
+          <th>邮箱</th>
+          <th>注册 IP</th>
+          <th>最近登录 IP</th>
+          <th>登录次数</th>
+          <th>状态</th>
+          <th>注册时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="userTableBody"></tbody>
+    </table>
+  </div>
+  <div id="emptyState" class="empty-state" style="display:none;">没有匹配的用户</div>
+</div>
+
+<!-- 用户详情弹窗 -->
+<div class="overlay" id="detailOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>用户详情</h2>
+      <button class="modal-close" onclick="closeDetail()">×</button>
+    </div>
+    <div id="detailBody" class="mono" style="font-size:13.5px; line-height:1.9;"></div>
+    <h3 style="margin-top:18px; margin-bottom:8px; font-size:14px;">最近登录 IP 记录</h3>
+    <div id="logList"></div>
+  </div>
+</div>
+
+<script src="/js/admin.js"></script>
+</body>
+</html>
